@@ -11,8 +11,15 @@ public class ButtonActions : MonoBehaviour
     // The method must be public so the button can see it
     public void OnButtonPressed()
     {
-        Debug.Log("Button was clicked!");
+        Debug.Log("Button was clicked! hp is " + StatsManager.Instance.health);
         // Add your game logic here (e.g., load a scene, open a menu)
+
+        StatsManager.Instance.health = StatsManager.Instance.health + healthStat;
+        StatsManager.Instance.armor = StatsManager.Instance.armor + armorStat;
+        StatsManager.Instance.speed = StatsManager.Instance.speed + speedStat;
+        StatsManager.Instance.damage = StatsManager.Instance.damage + damageStat;
+
+        //Destroy(gameObject);
     }
 
 

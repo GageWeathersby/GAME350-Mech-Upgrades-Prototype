@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class ButtonActions : MonoBehaviour
 {
-    public int healthStat = 10;
-    public int armorStat = 10;
-    public int speedStat = 10;
-    public int damageStat = 10;
+    public int healthStat = 0;
+    public int armorStat = 0;
+    public int speedStat = 0;
+    public int damageStat = 0;
+
+    //[SerializeField] private StatsUI statsUI; WORKING ON MAKING STAT UPDATE MORE OPTIMIZED
 
 
     // The method must be public so the button can see it
@@ -19,6 +21,8 @@ public class ButtonActions : MonoBehaviour
         StatsManager.Instance.speed = StatsManager.Instance.speed + speedStat;
         StatsManager.Instance.damage = StatsManager.Instance.damage + damageStat;
 
+        //StatsUI.UpdateAllStats(); WORKING ON MAKING STAT UPDATE MORE OPTIMIZED
+
         //Destroy(gameObject);
     }
 
@@ -27,8 +31,8 @@ public class ButtonActions : MonoBehaviour
 
 
 
-// Start is called once before the first execution of Update after the MonoBehaviour is created
-void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         
     }

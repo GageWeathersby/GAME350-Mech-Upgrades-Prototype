@@ -1,16 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Data;
+using UnityEditor.EditorTools;
 
 public class ButtonProperties : MonoBehaviour
 {
+
+    public static int buttonHealth;
+
+   /* public int buttonDamage;
+
+   public int buttonArmor;
+
+   public int buttonSpeed;  */
+
     // 1. Define a custom structure to hold the name and properties for each state
     [System.Serializable]
     public struct ButtonStateData
     {
+
+      /*  private ButtonProperties owner;
+
+        public ButtonStateData(ButtonProperties controller)
+        {
+            owner = controller;
+        }   */
+
+
         public string buttonName;
 
-        public int buttonHealth;
+       // public int buttonHealth;
 
         public int buttonDamage;
 
@@ -29,7 +49,14 @@ public class ButtonProperties : MonoBehaviour
     private Button _button;
     private Image _buttonImage;
     private TextMeshProUGUI _buttonText;
+
+    /*private int _buttonHealth;
+    private int _buttonDamage;
+    private int _buttonArmor;
+    private int _buttonSpeed; */
     private int _currentIndex = 0;
+
+    
 
     private void Awake()
     {
@@ -37,6 +64,12 @@ public class ButtonProperties : MonoBehaviour
         _button = GetComponent<Button>();
         _buttonImage = GetComponent<Image>();
         _buttonText = GetComponentInChildren<TextMeshProUGUI>();
+
+        /* _buttonHealth =GetComponentInChildren<int>();
+        _buttonDamage =GetComponentInChildren<int>();
+        _buttonArmor = GetComponentInChildren<int>();
+        _buttonSpeed = GetComponentInChildren<int>();   */
+        Debug.Log("Awake fucntion works");
     }
 
     private void Start()
@@ -45,6 +78,7 @@ public class ButtonProperties : MonoBehaviour
         if (states != null && states.Length > 0)
         {
             ApplyState(states[0]);
+            Debug.Log("start fucntion works");
         }
 
         // Subscribe to the click event
@@ -60,16 +94,19 @@ public class ButtonProperties : MonoBehaviour
 
         ApplyState(states[_currentIndex]);
 
-       /* StatsManager.Instance.health = StatsManager.Instance.health + buttonHealth;
-        StatsManager.Instance.armor = StatsManager.Instance.armor + buttonDamage;
-        StatsManager.Instance.speed = StatsManager.Instance.speed + buttonArmor;
-        StatsManager.Instance.damage = StatsManager.Instance.damage + buttonSpeed;  */
+        StatsManager.Instance.health = StatsManager.Instance.health + buttonHealth;
+       /* StatsManager.Instance.armor = StatsManager.Instance.armor + _buttonDamage;
+        StatsManager.Instance.speed = StatsManager.Instance.speed + _buttonArmor;
+        StatsManager.Instance.damage = StatsManager.Instance.damage + _buttonSpeed;  */
+        Debug.Log("OnButtonClicked fucntion works");
+        Debug.Log("Button was clicked! hp is " + StatsManager.Instance.health);
+
     }
 
     private void ApplyState(ButtonStateData data)
     {
         // Update the GameObject's name in the Hierarchy 
-        //gameObject.name = data.buttonName;
+        gameObject.name = data.buttonName;
 
         // Update the visible button text
         if (_buttonText != null)
@@ -85,9 +122,10 @@ public class ButtonProperties : MonoBehaviour
             {
                 _buttonImage.sprite = data.buttonSprite;
             }
-        } */
+        }  */
 
         _button.interactable = data.isInteractable;
+        Debug.Log("ApplyState fucntion works");
     }
 
     private void OnDestroy()
